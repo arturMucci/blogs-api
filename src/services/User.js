@@ -2,6 +2,11 @@ const createError = require('http-errors');
 const { User } = require('../models');
 const auth = require('../utils/auth');
 
+const getAll = async () => {
+  const allUsers = await User.findAll({ attributes: { exclude: ['password'] } });
+  return allUsers;
+};
+
 const login = async (email, password) => {
   const newLogin = await User.findOne({ where: { email } });
 
@@ -36,6 +41,7 @@ const addUser = async (newUser) => {
 };
 
 module.exports = {
+  getAll,
   login,
   addUser,
 };

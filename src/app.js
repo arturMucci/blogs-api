@@ -4,7 +4,7 @@ const {
   validateLogin,
   errorHandler,
 } = require('./middlewares/index');
-const { user } = require('./controllers');
+const { User } = require('./controllers');
 
 const app = express();
 
@@ -18,7 +18,7 @@ app.use(express.json());
 app.use(
   '/login',
   validateLogin,
-  user.login,
+  User.login,
 );
 
 app.use(

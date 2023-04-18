@@ -12,6 +12,12 @@ const createToken = (payload) => {
   return token;
 };
 
+const validateToken = (token) => {
+  const tokenChecked = JWT.verify(token, secretWord);
+  return tokenChecked;
+};
+
 module.exports = {
   createToken,
+  validateToken,
 };

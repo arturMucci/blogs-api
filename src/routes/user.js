@@ -1,13 +1,19 @@
 const express = require('express');
-const { user } = require('../controllers');
+const { User } = require('../controllers');
 const middlewares = require('../middlewares');
 
 const userRoutes = express.Router();
 
+userRoutes.get(
+  '/',
+  middlewares.validateToken,
+  User.getAll,
+  );
+
 userRoutes.post(
   '/',
   middlewares.validateNewUser,
-  user.addUser,
+  User.addUser,
 );
 
 module.exports = userRoutes;

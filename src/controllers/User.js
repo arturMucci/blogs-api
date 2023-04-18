@@ -1,5 +1,10 @@
 const { User } = require('../services');
 
+const getAll = async (_req, res) => {
+  const allUsers = await User.getAll();
+  return res.status(200).json(allUsers);
+};
+
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -21,6 +26,7 @@ const addUser = async (req, res, next) => {
 };
 
 module.exports = {
+  getAll,
   login,
   addUser,
 };
