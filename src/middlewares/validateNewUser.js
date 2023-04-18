@@ -1,7 +1,7 @@
 const createError = require('http-errors');
-const userSchema = require('../Joi/schema');
+const { userSchema } = require('../Joi');
 
-const validateNewUser = (req, res, next) => {
+const validateNewUser = (req, _res, next) => {
   const check = userSchema.validate(req.body);
   if (check.error) return next(createError(400, check.error));
   return next();

@@ -1,10 +1,18 @@
 const express = require('express');
-const { userRoutes } = require('./routes/index');
+
+const {
+  UserRoutes,
+  CategoryRoutes,
+} = require('./routes/index');
+
 const {
   validateLogin,
   errorHandler,
-} = require('./middlewares/index');
-const { User } = require('./controllers');
+} = require('./middlewares');
+
+const {
+  User,
+} = require('./controllers');
 
 const app = express();
 
@@ -23,9 +31,13 @@ app.use(
 
 app.use(
   '/user',
-  userRoutes,
+  UserRoutes,
 );
-// ...
+
+app.use(
+  '/categories',
+  CategoryRoutes,
+);
 
 app.use(errorHandler);
 
