@@ -26,11 +26,11 @@ const UserModel = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
   },
-    {
-      timestamps: false,
-      tablename: 'users',
-      underscored: true,
-    },
+  {
+    timestamps: false,
+    tablename: 'users',
+    underscored: true,
+  },
   );
 
   // User.associate = (models) => {
