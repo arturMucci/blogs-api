@@ -10,6 +10,12 @@ userRoutes.get(
   User.getAll,
   );
 
+userRoutes.get(
+  '/:id',
+  middlewares.validateToken,
+  User.getById,
+  );
+
 userRoutes.post(
   '/',
   middlewares.validateNewUser,

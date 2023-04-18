@@ -5,6 +5,16 @@ const getAll = async (_req, res) => {
   return res.status(200).json(allUsers);
 };
 
+const getById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const userById = await User.getById(id);
+    return res.status(200).json(userById);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 const login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -20,13 +30,13 @@ const addUser = async (req, res, next) => {
     const token = await User.addUser(req.body);
     return res.status(201).json({ token });
   } catch (error) {
-    console.log(error);
     return next(error);
   }
 };
 
 module.exports = {
   getAll,
+  getById,
   login,
   addUser,
 };

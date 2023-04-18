@@ -3,12 +3,23 @@ const { User } = require('../models');
 const auth = require('../utils/auth');
 
 const getAll = async () => {
-  const allUsers = await User.findAll({ attributes: { exclude: ['password'] } });
+  const allUsers = await User.findAll({
+    attributes: {
+      exclude: [
+        'password',
+      ],
+    },
+  });
+
   return allUsers;
 };
 
 const login = async (email, password) => {
-  const newLogin = await User.findOne({ where: { email } });
+  const newLogin = await User.findOne({
+    where: {
+      email,
+    },
+  });
 
   if (!newLogin || newLogin.password !== password) {
     throw createError(400, 'Invalid fields');
@@ -17,6 +28,22 @@ const login = async (email, password) => {
   const token = auth.createToken({ email });
 
   return token;
+};
+
+const getById = async (id) => {
+  const userById = await User.findByPk(+id, {
+    attributes: {
+      exclude: [
+        'password',
+      ],
+    },
+  });
+
+  console.log(userById);
+
+  if (!userById) throw createError(404, 'User does not exist');
+
+  return userById.dataValues;
 };
 
 const addUser = async (newUser) => {
@@ -44,4 +71,5 @@ module.exports = {
   getAll,
   login,
   addUser,
+  getById,
 };
