@@ -2,7 +2,8 @@
 const { Category } = require('../models');
 
 const getAll = async () => {
-
+  const allCategories = await Category.findAll();
+  return allCategories;
 };
 
 const addCategory = async (newCategory) => {

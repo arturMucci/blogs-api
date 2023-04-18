@@ -1,8 +1,12 @@
 const { User } = require('../services');
 
-const getAll = async (_req, res) => {
-  const allUsers = await User.getAll();
-  return res.status(200).json(allUsers);
+const getAll = async (_req, res, next) => {
+  try {
+    const allUsers = await User.getAll();
+    return res.status(200).json(allUsers);
+  } catch (error) {
+    return next(error);
+  }
 };
 
 const getById = async (req, res, next) => {

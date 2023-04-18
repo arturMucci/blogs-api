@@ -2,6 +2,7 @@ const express = require('express');
 
 const {
   Category: {
+    getAll,
     addCategory,
   },
 } = require('../controllers');
@@ -12,6 +13,12 @@ const {
 } = require('../middlewares');
 
 const CategoryRoutes = express.Router();
+
+CategoryRoutes.get(
+  '/',
+  validateToken,
+  getAll,
+);
 
 CategoryRoutes.post(
   '/',
