@@ -3,6 +3,7 @@ const { User } = require('../models');
 const auth = require('../utils/auth');
 
 const login = async (email, password) => {
+  console.log('maranão');
   const newLogin = await User.findOne({ where: { email } });
 
   if (!newLogin || newLogin.password !== password) {
