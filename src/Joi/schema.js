@@ -24,8 +24,13 @@ const userSchema = Joi.object({
     .required()
     .min(8)
     .label('displayName'),
+  image: Joi
+    .string()
+    .label('image'),
 }).messages({
+  // 'any.required': "",
   'any.min': '{{#label}} length must be at least {#limit} characters long',
+  'any.string': '{{#label}} must be of string type',
   'email.email': '{{#label}} must be a valid email',
 });
 

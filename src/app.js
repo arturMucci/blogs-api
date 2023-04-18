@@ -21,7 +21,10 @@ app.use(
   user.login,
 );
 
-app.use('/user', userRoutes);
+app.use(
+  '/user',
+  userRoutes,
+);
 // ...
 
 app.use(errorHandler);

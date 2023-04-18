@@ -1,8 +1,9 @@
+const createError = require('http-errors');
 const userSchema = require('../Joi/schema');
 
 const validateNewUser = (req, res, next) => {
-  const hasError = userSchema.validate(req.body);
-  if (!hasError) return next(hasError);
+  const check = userSchema.validate(req.body);
+  if (check.error) return next(createError(400, check.error));
   return next();
 };
 
