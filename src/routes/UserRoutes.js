@@ -1,24 +1,27 @@
 const express = require('express');
 const { User } = require('../controllers');
-const middlewares = require('../middlewares');
+const {
+  validateToken,
+  validateNewUser,
+} = require('../middlewares');
 
 const userRoutes = express.Router();
 
 userRoutes.get(
   '/',
-  middlewares.validateToken,
+  validateToken,
   User.getAll,
   );
 
 userRoutes.get(
   '/:id',
-  middlewares.validateToken,
+  validateToken,
   User.getById,
   );
 
 userRoutes.post(
   '/',
-  middlewares.validateNewUser,
+  validateNewUser,
   User.addUser,
 );
 

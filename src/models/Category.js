@@ -1,7 +1,7 @@
 'use strict';
 
 const CategoryModel = (sequelize, DataTypes) => {
-  const category = sequelize.define('Category', {
+  const Category = sequelize.define('Category', {
     id: {
       allowNull: false,
       autoIncrement: true,
@@ -20,7 +20,7 @@ const CategoryModel = (sequelize, DataTypes) => {
   },
   );
 
-  return category;
+  return Category;
 };
 
 module.exports = CategoryModel;

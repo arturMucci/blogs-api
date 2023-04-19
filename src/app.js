@@ -3,7 +3,8 @@ const express = require('express');
 const {
   UserRoutes,
   CategoryRoutes,
-} = require('./routes/index');
+  BlogPostRoutes,
+} = require('./routes');
 
 const {
   validateLogin,
@@ -37,6 +38,11 @@ app.use(
 app.use(
   '/categories',
   CategoryRoutes,
+);
+
+app.use(
+  '/post',
+  BlogPostRoutes,
 );
 
 app.use(errorHandler);

@@ -39,8 +39,6 @@ const getById = async (id) => {
     },
   });
 
-  console.log(userById);
-
   if (!userById) throw createError(404, 'User does not exist');
 
   return userById.dataValues;
