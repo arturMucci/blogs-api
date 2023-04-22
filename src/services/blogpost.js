@@ -24,6 +24,29 @@ const getAll = async () => {
   return allPosts;
 };
 
+const getById = async (id) => {
+  const [postById] = await BlogPost.findAll({
+    where: { id },
+    include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: ['id', 'displayName', 'email', 'image'],
+      },
+      {
+        model: Category,
+        as: 'categories',
+        attributes: ['id', 'name'],
+        through: { attributes: [] },
+      },
+    ],
+  });
+
+  if (!postById) throw createError(404, 'Post does not exist');
+
+  return postById;
+};
+
 const addPost = async ({ title, content, categoryIds }, token) => {
   const { dataValues: { id: userId } } = await retrieveUserId(token);
 
@@ -42,5 +65,6 @@ const addPost = async ({ title, content, categoryIds }, token) => {
 
 module.exports = {
   getAll,
+  getById,
   addPost,
 };

@@ -11,6 +11,12 @@ BlogPostRoutes.get(
   BlogPost.getAll,
 );
 
+BlogPostRoutes.get(
+  '/:id',
+  validateToken,
+  BlogPost.getById,
+);
+
 BlogPostRoutes.post(
   '/',
   validateToken,

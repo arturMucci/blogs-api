@@ -5,7 +5,15 @@ const getAll = async (_req, res, next) => {
     const allPosts = await BlogPost.getAll();
     return res.status(200).json(allPosts);
   } catch (error) {
-    console.log(error);
+    return next(error);
+  }
+};
+
+const getById = async (req, res, next) => {
+  try {
+    const postById = await BlogPost.getById(req.params.id);
+    return res.status(200).json(postById);
+  } catch (error) {
     return next(error);
   }
 };
@@ -21,5 +29,6 @@ const addPost = async (req, res, next) => {
 
 module.exports = {
   getAll,
+  getById,
   addPost,
 };
