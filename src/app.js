@@ -1,19 +1,9 @@
 const express = require('express');
-
-const {
-  UserRoutes,
-  CategoryRoutes,
-  BlogPostRoutes,
-} = require('./routes');
-
-const {
-  validateLogin,
-  errorHandler,
-} = require('./middlewares');
-
-const {
-  User,
-} = require('./controllers');
+const loginRoutes = require('./routes/loginRoutes');
+const userRoutes = require('./routes/userRoutes');
+const errorHandler = require('./middlewares/errorHandler');
+const categoriesRoutes = require('./routes/categoryRoutes');
+const BlogPostRoutes = require('./routes/blogPostRoutes');
 
 const app = express();
 
@@ -21,23 +11,23 @@ const app = express();
 app.get('/', (_request, response) => {
   response.send();
 });
+// ____________________________________
 
 app.use(express.json());
 
 app.use(
   '/login',
-  validateLogin,
-  User.login,
+  loginRoutes,
 );
 
 app.use(
   '/user',
-  UserRoutes,
+  userRoutes,
 );
 
 app.use(
   '/categories',
-  CategoryRoutes,
+  categoriesRoutes,
 );
 
 app.use(
@@ -47,6 +37,4 @@ app.use(
 
 app.use(errorHandler);
 
-// É importante exportar a constante `app`,
-// para que possa ser utilizada pelo arquivo `src/server.js`
 module.exports = app;

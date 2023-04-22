@@ -1,4 +1,4 @@
-const { Category } = require('../services');
+const Category = require('../services/category');
 
 const getAll = async (req, res, next) => {
   try {
@@ -9,10 +9,10 @@ const getAll = async (req, res, next) => {
   }
 };
 
-const addCategory = async (req, res, next) => {
+const createCategory = async (req, res, next) => {
   try {
-    const addedCategory = await Category.addCategory(req.body);
-    return res.status(201).json(addedCategory);
+    const createdCategory = await Category.createCategory(req.body);
+    return res.status(201).json(createdCategory);
   } catch (error) {
     return next(error);
   }
@@ -20,5 +20,5 @@ const addCategory = async (req, res, next) => {
 
 module.exports = {
   getAll,
-  addCategory,
+  createCategory,
 };

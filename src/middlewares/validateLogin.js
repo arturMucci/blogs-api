@@ -1,10 +1,10 @@
-// const userSchema = require('../Joi/schema');
 const createError = require('http-errors');
+const loginSchema = require('../Joi/loginSchema');
 
-const validateLogin = (req, _res, next) => {
-  const { email, password } = req.body;
-  if (!email || !password) throw next(createError(400, 'Some required fields are missing'));
+module.exports = (req, _res, next) => {
+  const { error } = loginSchema.validate(req.body);
+
+  if (error) next(createError(400, error.message));
+
   return next();
 };
-
-module.exports = validateLogin;

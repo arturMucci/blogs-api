@@ -1,10 +1,10 @@
 const createError = require('http-errors');
-const { userSchema } = require('../Joi');
+const userSchema = require('../Joi/userSchema');
 
-const validateNewUser = (req, _res, next) => {
-  const check = userSchema.validate(req.body);
-  if (check.error) return next(createError(400, check.error));
+module.exports = (req, _res, next) => {
+  const {error} = userSchema.validate(req.body);
+
+  if (error) next(createError(400, error.message));
+
   return next();
 };
-
-module.exports = validateNewUser;

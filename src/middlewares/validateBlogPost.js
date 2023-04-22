@@ -1,10 +1,8 @@
 const createError = require('http-errors');
-const { BlogPostSchema } = require('../Joi');
+const BlogPostSchema = require('../Joi/blogPostSchema');
 
-const validateBlogPost = (req, _res, next) => {
+module.exports = (req, _res, next) => {
   const check = BlogPostSchema.validate(req.body);
   if (check.error) return next(createError(400, check.error));
   return next();
 };
-
-module.exports = validateBlogPost;

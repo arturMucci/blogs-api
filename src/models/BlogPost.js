@@ -1,40 +1,32 @@
-'use strict';
+/**
+ *
+ * @param {import('sequelize').Sequelize} Sequelize
+ * @param {import('sequelize').DataTypes} DataTypes
+ */
 
-const BlogPost = (sequelize, DataTypes) => {
-  const BlogPost = sequelize.define('BlogPost', {
+module.exports = (Sequelize, DataTypes) => {
+  const BlogPost = Sequelize.define('BlogPost', {
     id: {
-      allowNull: false,
-      autoIncrement: true,
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      type: DataTypes.INTEGER,
+      autoIncrement: true,
     },
-    title: {
-      allowNull: false,
-      type: DataTypes.STRING,
-    },
-    content: {
-      allowNull: false,
-      type: DataTypes.STRING,
-    },
-    userId: {
-      allowNull: false,
-      type: DataTypes.INTEGER,
-    },
+    title: DataTypes.STRING,
+    content: DataTypes.STRING,
+    userId: DataTypes.INTEGER,
     published: {
-      allowNull: false,
       defaultValue: DataTypes.NOW,
       type: DataTypes.DATE,
     },
     updated: {
-      allowNull: false,
       defaultValue: DataTypes.NOW,
       type: DataTypes.DATE,
     },
   },
   {
-    timestamps: false,
-    tablename: 'blog_posts',
     underscored: true,
+    timestamps: false,
+    tableName: 'blog_posts',
   });
 
   BlogPost.associate = (models) => {
@@ -46,5 +38,3 @@ const BlogPost = (sequelize, DataTypes) => {
 
   return BlogPost;
 };
-
-module.exports = BlogPost;

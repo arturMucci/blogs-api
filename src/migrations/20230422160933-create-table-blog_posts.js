@@ -29,12 +29,12 @@ module.exports = {
       },
       published: {
         allowNull: false,
-        defaulValue: Sequelize.NOW,
+        defautlValue: Sequelize.NOW,
         type: Sequelize.DATE,
       },
       updated: {
         allowNull: false,
-        defaulValue: Sequelize.NOW,
+        defautlValue: Sequelize.NOW,
         type: Sequelize.DATE,
       },
     });

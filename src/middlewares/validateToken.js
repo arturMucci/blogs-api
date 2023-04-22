@@ -1,16 +1,15 @@
 const createError = require('http-errors');
-const auth = require('../utils/auth');
+const decodeToken = require('../utils/decodeToken');
 
-const validateToken = (req, _res, next) => {
+module.exports = (req, _res, next) => {
   const { authorization } = req.headers;
+
   if (!authorization) return next(createError(401, 'Token not found'));
 
   try {
-    auth.validateToken(authorization);
+    decodeToken(authorization);
     next();
   } catch (error) {
     return next(createError(401, 'Expired or invalid token'));
   }
 };
-
-module.exports = validateToken;
