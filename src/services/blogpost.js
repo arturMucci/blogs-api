@@ -1,10 +1,28 @@
 const createError = require('http-errors');
-
-const { BlogPost } = require('../models');
-
+const { BlogPost, User, Category } = require('../models');
 const retrieveUserId = require('../utils/retrieveUserId');
 const checkCategories = require('../utils/checkCategories');
 const createRelations = require('../utils/createRelations');
+
+const getAll = async () => {
+  const allPosts = await BlogPost.findAll({
+    include: [
+      {
+        model: User,
+        as: 'user',
+        attributes: ['id', 'displayName', 'email', 'image'],
+      },
+      {
+        model: Category,
+        as: 'categories',
+        attributes: ['id', 'name'],
+        through: { attributes: [] },
+      },
+    ],
+  });
+
+  return allPosts;
+};
 
 const addPost = async ({ title, content, categoryIds }, token) => {
   const { dataValues: { id: userId } } = await retrieveUserId(token);
@@ -23,5 +41,6 @@ const addPost = async ({ title, content, categoryIds }, token) => {
 };
 
 module.exports = {
+  getAll,
   addPost,
 };

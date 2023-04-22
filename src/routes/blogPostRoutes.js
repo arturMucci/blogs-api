@@ -5,6 +5,12 @@ const validateBlogPost = require('../middlewares/validateBlogPost');
 
 const BlogPostRoutes = express.Router();
 
+BlogPostRoutes.get(
+  '/',
+  validateToken,
+  BlogPost.getAll,
+);
+
 BlogPostRoutes.post(
   '/',
   validateToken,
