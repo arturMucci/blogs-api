@@ -1,5 +1,5 @@
-const { Category } = require('../models');
 const createError = require('http-errors');
+const { Category } = require('../models');
 
 const getAll = async () => {
   const allCategories = await Category.findAll();

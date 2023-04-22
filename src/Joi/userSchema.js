@@ -20,5 +20,5 @@ module.exports = Joi.object({
     .string(),
 }).messages({
   'email.required': '{{#label}} must be a valid email',
-  'any.min': "{{#label}} length must be at least 8 characters long",
+  'any.min': '{{#label}} length must be at least 8 characters long',
 });

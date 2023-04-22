@@ -6,6 +6,5 @@ module.exports = async (categoryIds) => {
   return categoryIds
     .every((category) => categories
       .map((each) => +each.id)
-      .includes(+category)
-      );
+      .includes(+category));
 };

@@ -22,7 +22,7 @@ const getById = async (id) => {
       exclude: [
         'password',
       ],
-    }
+    },
   });
 
   if (!userById) throw createError(404, 'User does not exist');
@@ -38,7 +38,7 @@ const createUser = async (user) => {
   });
 
   if (userExists) {
-    throw createError(409, "User already registered");
+    throw createError(409, 'User already registered');
   }
 
   const { dataValues: { email } } = await User.create(user);
