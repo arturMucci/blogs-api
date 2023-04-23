@@ -63,8 +63,25 @@ const addPost = async ({ title, content, categoryIds }, token) => {
   return createdPost.dataValues;
 };
 
+const updatePost = async ({ title, content}, id, token) => {
+  const { dataValues: { id: tokenUserId } } = await retrieveUserId(token);
+  const { dataValues: { userId: postUserId } } = await getById(id);
+
+  if (tokenUserId !== postUserId) throw createError(401, 'Unauthorized user');
+
+  await BlogPost.update(
+    { title, content },
+    { where: { id } },
+  );
+
+  const postById = await getById(id);
+
+  return postById;
+};
+
 module.exports = {
   getAll,
   getById,
   addPost,
+  updatePost,
 };
