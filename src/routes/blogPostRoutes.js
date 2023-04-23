@@ -3,7 +3,6 @@ const BlogPost = require('../controllers/blogpost');
 const validateToken = require('../middlewares/validateToken');
 const validateBlogPost = require('../middlewares/validateBlogPost');
 const validatePostEdit = require('../middlewares/validatePostEdit');
-// const validateSameUser = require('../middlewares/validateSameUser');
 
 const BlogPostRoutes = express.Router();
 
@@ -29,7 +28,6 @@ BlogPostRoutes.post(
 BlogPostRoutes.put(
   '/:id',
   validateToken,
-  // validateSameUser,
   validatePostEdit,
   BlogPost.updatePost,
 );
@@ -37,7 +35,6 @@ BlogPostRoutes.put(
 BlogPostRoutes.delete(
   '/:id',
   validateToken,
-  // validateSameUser,
   BlogPost.deletePost,
 );
 
