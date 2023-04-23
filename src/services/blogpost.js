@@ -63,7 +63,7 @@ const addPost = async ({ title, content, categoryIds }, token) => {
   return createdPost.dataValues;
 };
 
-const updatePost = async ({ title, content}, id, token) => {
+const updatePost = async ({ title, content }, id, token) => {
   const { dataValues: { id: tokenUserId } } = await retrieveUserId(token);
   const { dataValues: { userId: postUserId } } = await getById(id);
 
