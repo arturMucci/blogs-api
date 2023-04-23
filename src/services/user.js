@@ -1,6 +1,7 @@
 const createError = require('http-errors');
 const { User } = require('../models');
 const generateToken = require('../utils/generateToken');
+const retrieveUserId = require('../utils/retrieveUserId');
 
 const getAll = async () => {
   const allUsers = await User.findAll({
@@ -46,8 +47,17 @@ const createUser = async (user) => {
   return generateToken(email);
 };
 
+const deleteUser = async (token) => {
+  const { dataValues: { id }} = await retrieveUserId(token);
+
+  await User.destroy({
+    where: { id },
+  })
+};
+
 module.exports = {
   getAll,
   getById,
   createUser,
+  deleteUser,
 };
