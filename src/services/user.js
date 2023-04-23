@@ -48,11 +48,11 @@ const createUser = async (user) => {
 };
 
 const deleteUser = async (token) => {
-  const { dataValues: { id }} = await retrieveUserId(token);
+  const { dataValues: { id } } = await retrieveUserId(token);
 
   await User.destroy({
     where: { id },
-  })
+  });
 };
 
 module.exports = {
