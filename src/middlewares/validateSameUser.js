@@ -1,4 +1,4 @@
-const createError = require('http-errors');
+// const createError = require('http-errors');
 const retrieveUserId = require('../utils/retrieveUserId');
 
 module.exports = async (req, _res, next) => {
