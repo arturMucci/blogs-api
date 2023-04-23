@@ -79,9 +79,24 @@ const updatePost = async ({ title, content }, id, token) => {
   return postById;
 };
 
+const deletePost = async (id, token) => {
+  const { dataValues: { id: tokenUserId } } = await retrieveUserId(token);
+  const postById = await getById(id);
+  const { dataValues: { userId: postUserId } } = postById;
+
+  if (tokenUserId !== postUserId) throw createError(401, 'Unauthorized user');
+
+  const deletedPostId = await BlogPost.destroy(
+    { where: { id } },
+  );
+
+  return deletedPostId;
+};
+
 module.exports = {
   getAll,
   getById,
   addPost,
   updatePost,
+  deletePost,
 };

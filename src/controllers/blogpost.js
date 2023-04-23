@@ -38,9 +38,20 @@ const updatePost = async (req, res, next) => {
   }
 };
 
+const deletePost = async (req, res, next) => {
+  try {
+    const deletedPostId = await BlogPost
+      .deletePost(req.params.id, req.headers.authorization);
+    return res.status(204).json(deletedPostId);
+  } catch (error) {
+    return next(error);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   addPost,
   updatePost,
+  deletePost,
 };
