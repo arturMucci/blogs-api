@@ -3,9 +3,9 @@ const retrieveUserId = require('../utils/retrieveUserId');
 
 module.exports = async (req, _res, next) => {
   const { authorization } = req.headers;
-  const { id } = req.params;
+  // const { id } = req.params;
   const { dataValues: { id: tokenUserId } } = await retrieveUserId(authorization);
-  const userById = await getById(id, next);
+  // const userById = await getById(id, next);
 
   console.log(userById);
 
