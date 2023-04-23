@@ -7,9 +7,7 @@ module.exports = async (req, _res, next) => {
   const { dataValues: { id: tokenUserId } } = await retrieveUserId(authorization);
   // const userById = await getById(id, next);
 
-  console.log(userById);
-
-  if (tokenUserId !== userById) next(createError(401, 'Unauthorized user'));
+  // if (tokenUserId !== userById) next(createError(401, 'Unauthorized user'));
 
   return next();
 };
